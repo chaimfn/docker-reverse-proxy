@@ -1,5 +1,5 @@
 # Intro:
-Here is an example of reverse-proxy to some apps.
+Here is an example of reverse-proxy to some web-apps, all on docker.
 
 We running some apps as docker-containers without public ports, and publishing them by reverse-proxy (nginx), which is a docker-container too.
 
