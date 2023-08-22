@@ -43,6 +43,7 @@ Repeat the 3 tests above, but now with the ```https``` protocol (```4443```).
 # Restart:
 For now, when you restart your machine, all those containers will be stopped.<br />
 You may test it by restart, and then ```docker ps``` or ```docker compose ls```. <br />
+
 We're going to make them 'persistent'. <br />
 
 ### 1. Edit 'docker-compose' file:
