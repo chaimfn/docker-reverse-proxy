@@ -1,18 +1,11 @@
 # Intro:
-Here is an example of reverse-proxy to some web-apps, all on docker.
-
-We running some apps as docker-containers without public ports, and publishing them by reverse-proxy (nginx), which is a docker-container too.
-
-The reverse-proxy is published as ssl (with self-signd-certificate), and so does each app behind it.
-
-Each app is published (by reverse-proxy) with its domain. And because of that, with its ssl-cert (self-signd).
-
-In the reverse-proxy config, the references to apps is based on the apps NAMES instead of apps IPs!
-
-It's makes the configuration easier.
-
-This is possible because of using private-network, as follows.
-
+Here is an example of reverse-proxy to some web-apps, all on docker. <br />
+We running some apps as docker-containers without public ports, and publishing them by reverse-proxy (nginx), which is a docker-container too. <br />
+The reverse-proxy is published as ssl (with self-signd-certificate), and so does each app behind it. <br />
+Each app is published (by reverse-proxy) with its domain. And because of that, with its ssl-cert (self-signd). <br />
+In the reverse-proxy config, the references to apps is based on the apps NAMES instead of apps IPs! <br />
+It's makes the configuration easier. <br />
+This is possible because of using private-network, see ```docker-compose.yaml``` file, first code-block.
 
 # Steps:
 ### 1. Navigate to root of this project:
@@ -45,4 +38,22 @@ Make shure one cert is updated.
 3. ```curl http://flask.docker.local:8880/```. Expected: ```hello flask!```.
 
 ##### Finally, by https:
-Repeat the 3 check above, but now, with the ```https``` protocol (```4443```).
+Repeat the 3 tests above, but now with the ```https``` protocol (```4443```).
+
+# Restart:
+For now, when you restart your machine, all those containers will be stopped.<br />
+You may test it by restart, and then ```docker ps``` or ```docker compose ls```. <br />
+We're going to make them 'persistent'. <br />
+
+### 1. Edit 'docker-compose' file:
+Edit the ```docker-compose.yaml``` file. <br />
+Uncomment lines ```12, 19 and 26```: ~~```#restart: unless-stopped```~~ -> ```restart: unless-stopped```.
+
+### 2. Run once again:
+```docker compose -p reverse_proxy up -d``` <br />
+
+### 3. Restart your machine.
+
+### 4. Check:
+By docker compose: ```dokcer compose ls``` and ```docker compose -p reverse_proxy ps```<br />
+or, natively: ```docker ps```.
