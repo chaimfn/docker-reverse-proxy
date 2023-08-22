@@ -1,4 +1,4 @@
-FROM python:3.9.17-slim.netfree
+FROM chaimfn/python:3.9.17-slim.netfree
 
 # switch working directory
 WORKDIR /app

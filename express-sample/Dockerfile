@@ -1,4 +1,4 @@
-FROM node:20.5.0-slim.netfree
+FROM chaimfn/node:20.5.0-slim.netfree
 
 # Create app directory
 WORKDIR /app

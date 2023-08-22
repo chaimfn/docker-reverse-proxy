@@ -1,0 +1,37 @@
+version: "3.0"
+
+networks:
+  network.docker.local:
+    name: "network.docker.local"
+    driver: bridge
+
+
+services:
+  express:
+    container_name: "express.docker.local"
+    #restart: unless-stopped
+    image: chaimfn/express-sample:1
+    networks:
+      - network.docker.local
+
+  flask:
+    container_name: "flask.docker.local"
+    #restart: unless-stopped
+    image: chaimfn/flask-sample:1
+    networks:
+      - network.docker.local
+
+  nginx:
+    container_name: "nginx.docker.local"
+    #restart: unless-stopped
+    image: chaimfn/nginx:1.25.1.netfree
+    networks:
+      - network.docker.local
+    volumes:
+      - $PWD/nginx-sample/etc/conf.d/default.conf:/etc/nginx/conf.d/default.conf
+      - $PWD/nginx-sample/etc/ssl/:/etc/ssl/
+    ports:
+      - "8880:80"
+      - "4443:443"
+
+
